@@ -1,6 +1,4 @@
-﻿
-
-namespace TDFramework {
+﻿namespace TDFramework {
 
     using System.Collections.Generic;
     using System.Collections;
@@ -10,8 +8,7 @@ namespace TDFramework {
     using System;
     using UnityEngine;
 
-    public class Tools 
-    {
+    public class Tools {
         #region 查找子物体相关
         //查找子物体或组件
         public static T FindObject<T> (Transform parent, string name) where T : UnityEngine.Object {
@@ -41,18 +38,16 @@ namespace TDFramework {
         public static void DestroyAllChildObject (Transform parent, float delayTime = 0.0f) {
             if (parent == null) return;
             Transform childTrans = null;
-            while((childTrans = parent.GetChild(0)) != null)
-            {
-                UnityEngine.GameObject.Destroy(childTrans.gameObject, delayTime);
+            while ((childTrans = parent.GetChild (0)) != null) {
+                UnityEngine.GameObject.Destroy (childTrans.gameObject, delayTime);
             }
         }
         #endregion
 
         #region 单例相关
         //创建单例
-        public static T GetInstance<T> (ref T instance, string name, bool isDontDestroy = true) 
-            where T : UnityEngine.Object 
-        {
+        public static T GetInstance<T> (ref T instance, string name, bool isDontDestroy = true)
+        where T : UnityEngine.Object {
             if (instance != null) return instance;
 
             if (GameObject.FindObjectOfType<T> () != null) {
@@ -60,10 +55,10 @@ namespace TDFramework {
                 return instance;
             }
 
-            GameObject go = new GameObject(name, typeof (T));
-            if (isDontDestroy) 
+            GameObject go = new GameObject (name, typeof (T));
+            if (isDontDestroy)
                 UnityEngine.Object.DontDestroyOnLoad (go);
-            instance = go.GetComponent (typeof(T)) as T;
+            instance = go.GetComponent (typeof (T)) as T;
             return instance;
         }
         #endregion
@@ -90,8 +85,8 @@ namespace TDFramework {
                 DirectoryInfo direction = new DirectoryInfo (path);
                 FileInfo[] files = direction.GetFiles ("*", SearchOption.AllDirectories);
                 for (int i = 0; i < files.Length; i++) {
-                    if (files[i].Name.EndsWith (".cs") || 
-                        files[i].Name.EndsWith (".meta") || 
+                    if (files[i].Name.EndsWith (".cs") ||
+                        files[i].Name.EndsWith (".meta") ||
                         files[i].Name.EndsWith (".json") ||
                         files[i].Name.EndsWith (".xml")) {
                         continue;
@@ -130,6 +125,19 @@ namespace TDFramework {
                 }
             }
             return localIP;
+        }
+        #endregion
+
+        #region 角度计算
+        //叫角度值转换在0-360度之间
+        public static float ClampAngle (float angle, float min, float max) {
+            do {
+                if (angle < -360)
+                    angle += 360;
+                if (angle > 360)
+                    angle -= 360;
+            } while (angle < -360 || angle > 360);
+            return Mathf.Clamp (angle, min, max);
         }
         #endregion
     }
