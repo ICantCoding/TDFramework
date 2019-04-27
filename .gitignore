@@ -4,3 +4,5 @@
 ./TDFramework/TDFramework/Library/*
 ./TDFramework/TDFramework/obj/*
 ./TDFramework/TDFramework/Logs/*
+./TDFramework/TDFramework/Temp/*
+
