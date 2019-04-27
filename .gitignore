@@ -1,8 +1,7 @@
 /TDFramework/TDFramework/*.csproj
 /TDFramework/TDFramework/ProjectSettings
 /TDFramework/TDFramework/*.sln
-/TDFramework/TDFramework/Library
-/TDFramework/TDFramework/obj
-/TDFramework/TDFramework/Logs
-/TDFramework/TDFramework/Temp
-
+/TDFramework/TDFramework/Library/*
+/TDFramework/TDFramework/obj/*
+/TDFramework/TDFramework/Logs/*
+/TDFramework/TDFramework/Temp/*
