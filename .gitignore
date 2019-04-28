@@ -1,5 +1,5 @@
 /TDFramework/*.csproj
-/TDFramework/ProjectSettings
+/TDFramework/ProjectSettings/*
 /TDFramework/*.sln
 /TDFramework/Library/*
 /TDFramework/obj/*
