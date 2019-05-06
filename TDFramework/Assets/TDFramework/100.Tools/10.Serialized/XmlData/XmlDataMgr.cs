@@ -29,7 +29,7 @@ namespace TDFramework.Serialization
             if(xmlData == null)
             {
                 Debug.Log(path + "不存在, 从对应的Xml文件加载数据.");
-                string xmlPath = path.Replace("Binary", "Xml").Replace(".bytes", ".xml");
+                string xmlPath = path.Replace(".bytes", ".xml");
                 xmlData = SerializeOperate.XmlDeserialize4Editor<T>(xmlPath);
             }
 #endif
@@ -43,13 +43,10 @@ namespace TDFramework.Serialization
         //获取配置表
         public T FindXmlData<T>(string path) where T : XmlDataBase
         {
-            if(string.IsNullOrEmpty(path)) return null;
+            if(string.IsNullOrEmpty(path)) 
+                return null;
             XmlDataBase xmlData = null;
-            if(m_allXmlDataDict.TryGetValue(path, out xmlData) && xmlData != null)
-            {
-                return xmlData as T;
-            }
-            else
+            if(m_allXmlDataDict.TryGetValue(path, out xmlData) == false || xmlData == null)
             {
                 xmlData = LoadXmlData<T>(path);
             }
